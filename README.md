@@ -2,7 +2,7 @@
 
 XFMoviesDemo is an exercise resolution for a multiplatform app with Xamarin Forms and Prism. It is a platform porting from the project [MoviesDemo] (https://github.com/Alfraso/DEMO-DisenoResponsivoEnUWP), written for Universal Windows Platform.
 
-![](https://github.com/hinojosachapel/DynamicModules/blob/master/dynamicmodules.png)
+![](https://github.com/hinojosachapel/XFMoviesDemo/blob/master/src/Screenshots/devices.png)
 
 ### More info
   * [Xamarin y UWP: Todo sobre el evento que celebramos en Microsoft](http://www.bravent.net/xamarin-y-uwp-todo-sobre-el-evento-que-celebramos-en-microsoft/)
