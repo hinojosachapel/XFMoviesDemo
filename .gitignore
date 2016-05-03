@@ -3,3 +3,20 @@
 ################################################################################
 
 /src/.vs
+/src/packages
+/src/XFMoviesDemo/XFMoviesDemo/bin
+/src/XFMoviesDemo/XFMoviesDemo/obj
+/src/XFMoviesDemo/XFMoviesDemo/XFMoviesDemo.csproj.user
+/src/XFMoviesDemo/XFMoviesDemo.Droid/bin
+/src/XFMoviesDemo/XFMoviesDemo.Droid/obj
+/src/XFMoviesDemo/XFMoviesDemo.Droid/XFMoviesDemo.Droid.csproj.user
+/src/XFMoviesDemo/XFMoviesDemo.iOS/bin
+/src/XFMoviesDemo/XFMoviesDemo.iOS/obj
+/src/XFMoviesDemo/XFMoviesDemo.UWP/bin
+/src/XFMoviesDemo/XFMoviesDemo.UWP/obj
+/src/XFMoviesDemo/XFMoviesDemo.UWP/XFMoviesDemo.UWP.csproj.user
+/src/XFMoviesDemo/XFMoviesDemo.Windows/bin
+/src/XFMoviesDemo/XFMoviesDemo.Windows/obj
+/src/XFMoviesDemo/XFMoviesDemo.WinPhone/bin
+/src/XFMoviesDemo/XFMoviesDemo.WinPhone/obj
+/src/XFMoviesDemo/XFMoviesDemo.WinPhone/XFMoviesDemo.WinPhone.csproj.user

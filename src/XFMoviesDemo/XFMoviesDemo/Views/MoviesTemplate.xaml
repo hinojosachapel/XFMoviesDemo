@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XFMoviesDemo.Views.MoviesTemplate">
+
+  <Grid Padding="12,4">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <Image
+        Grid.RowSpan="2"
+        HeightRequest="70"
+        Aspect="AspectFit"
+        Source="{Binding Poster}" />
+
+    <Label
+        Grid.Column="1"
+        Style="{DynamicResource BaseTextBlockStyle}"
+        Text="{Binding Title}" />
+
+    <Label
+        Grid.Row="1"
+        Grid.Column="1"
+        Style="{DynamicResource ListCaptionAltTextblockStyle}"
+        Text="{Binding Director}" />
+
+    <Label
+        Grid.Row="1"
+        Grid.Column="1"
+        HorizontalOptions="End"
+        Style="{DynamicResource ListCaptionAltTextblockStyle}"
+        Text="{Binding Runtime}" />
+  </Grid>
+  
+</ContentView>

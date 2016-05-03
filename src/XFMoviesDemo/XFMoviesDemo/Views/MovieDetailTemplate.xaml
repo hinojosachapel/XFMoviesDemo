@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XFMoviesDemo.Views.MovieDetailTemplate">
+
+  <Grid Margin="12">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="140" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+      
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="12" />
+      <RowDefinition Height="30" />
+      <RowDefinition Height="500" /> <!-- Just to avoid a extrange behaviour in W10 Mobile -->
+    </Grid.RowDefinitions>
+       
+      <Image x:Name="Poster" Source="{Binding Movie.Poster}" WidthRequest="134" HeightRequest="193" VerticalOptions="Start">
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding ImageTapedCommand}" CommandParameter="{x:Reference Name=Poster}" />
+        </Image.GestureRecognizers>
+      </Image>  
+
+      <StackLayout Spacing="0" Grid.Column="1" Margin="4,0,4,0">
+        <BoxView Style="{DynamicResource LineStyle}" VerticalOptions="Start" />
+
+        <Label
+            FontAttributes="Bold"
+            Style="{DynamicResource ListCaptionAltTextblockStyle}"
+            Text="Genre:" />
+
+        <Label
+            Style="{DynamicResource ListCaptionAltTextblockStyle}"
+            Text="{Binding Movie.Genre}" />
+
+        <BoxView Style="{DynamicResource LineStyle}" />
+
+        <Label
+            FontAttributes="Bold"
+            Style="{DynamicResource ListCaptionAltTextblockStyle}"
+            Text="Director:" />
+
+        <Label
+            Style="{DynamicResource ListCaptionAltTextblockStyle}"
+            Text="{Binding Movie.Director}" />
+
+        <BoxView Style="{DynamicResource LineStyle}" />
+
+        <Label
+            FontAttributes="Bold"
+            Style="{DynamicResource ListCaptionAltTextblockStyle}"
+            Text="Cast:" />
+
+        <Label
+            Style="{DynamicResource ListCaptionAltTextblockStyle}"
+            Text="{Binding Movie.Cast}" />
+
+        <BoxView Style="{DynamicResource LineStyle}" />
+
+        <Label
+            FontAttributes="Bold"
+            Style="{DynamicResource ListCaptionAltTextblockStyle}"
+            Text="Release Date:" />
+
+        <Label
+            Style="{DynamicResource ListCaptionAltTextblockStyle}"
+            Text="{Binding Movie.RelaseDate}" />
+
+        <BoxView Style="{DynamicResource LineStyle}" />
+
+        <Label
+            FontAttributes="Bold"
+            Style="{DynamicResource ListCaptionAltTextblockStyle}"
+            Text="Run Time:" />
+        
+        <Label
+            Style="{DynamicResource ListCaptionAltTextblockStyle}"
+            Text="{Binding Movie.Runtime}" />
+        
+      </StackLayout>
+    
+    <BoxView Grid.Row="1" Grid.ColumnSpan="2" Style="{DynamicResource LineStyle}" />
+    
+    <Label
+        Grid.Row="2"
+        Grid.ColumnSpan="2"
+        Margin="12,4"
+        FontAttributes="Bold"
+        Style="{DynamicResource ListCaptionAltTextblockStyle}"
+        Text="Synopsis:" />
+  
+    <Label
+      Grid.Row="3"
+      Grid.ColumnSpan="2"
+        Margin="12,0,12,0"
+        Style="{DynamicResource ListCaptionAltTextblockStyle}"
+        Text="{Binding Movie.Description}" />
+  </Grid>
+  
+</ContentView>

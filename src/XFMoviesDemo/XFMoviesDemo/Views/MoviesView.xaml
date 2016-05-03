@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XFMoviesDemo;assembly=XFMoviesDemo"
+             xmlns:views="clr-namespace:XFMoviesDemo.Views;assembly=XFMoviesDemo"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="XFMoviesDemo.Views.MoviesView"
+             BackgroundColor="#F5F5F5"
+             Title="{Binding Title}">
+
+  <Grid>
+    <StackLayout Spacing="0">
+
+      <Grid IsVisible="{x:Static local:App.IsUWPDesktop}">
+
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+          <RowDefinition Height="48"/>
+        </Grid.RowDefinitions>
+
+        <BoxView BackgroundColor="#03A9F4" />
+        <Image x:Name="BurgerMenu" Source="burgermenu.png" VerticalOptions="Start" HorizontalOptions="Start">
+          <Image.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding ImageTapedCommand}" CommandParameter="{x:Reference Name=BurgerMenu}" />
+          </Image.GestureRecognizers>
+        </Image>
+        <Label Text="{Binding Title}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="24" TextColor="#FFFFFF" />
+
+      </Grid>
+
+      <ListView x:CachingStrategy="RecycleElement" HasUnevenRows="True"
+                SeparatorColor="Transparent" BackgroundColor="#F5F5F5"
+                ItemsSource="{Binding Movies}"
+                SelectedItem="{Binding SelectedMovie, Mode=TwoWay}"
+                local:ItemTapped.Command="{Binding ItemTapedCommand}">
+
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <views:MoviesTemplate />
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+
+      </ListView>
+
+    </StackLayout>
+
+    <Grid IsVisible="{Binding IsBusy}" BackgroundColor="#80000000" Padding="12" VerticalOptions="Fill">
+      <StackLayout VerticalOptions="Center">
+        <ActivityIndicator IsRunning="{Binding IsBusy}" Color="White" />
+        <Label Text="Loading movies..." HorizontalOptions="Center" TextColor="White" FontSize="18"/>
+      </StackLayout>      
+    </Grid>
+    
+  </Grid>
+</ContentPage>
