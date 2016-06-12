@@ -44,12 +44,12 @@ namespace XFMoviesDemo.Core.Services
                     Title = info.Element("title").Value,
                     Runtime = info.Element("runtime").Value,
                     Director = info.Element("director").Value,
-                    RelaseDate = info.Element("releasedate").Value,
-                    Genre = string.Join(", ", genre.Elements().Select(g => g.Value)),
-                    Cast = string.Join(", ", cast.Elements().Select(g => g.Value)),
+                    ReleaseDate = info.Element("releasedate").Value,
+                    Genre = genre != null ? string.Join(", ", genre.Elements().Select(g => g.Value)) : string.Empty,
+                    Cast = cast != null ? string.Join(", ", cast.Elements().Select(g => g.Value)) : string.Empty,
                     Description = info.Element("description").Value,
-                    Poster = poster.Element("location").Value,
-                    LargePoster = poster.Element("xlarge").Value
+                    Poster = poster?.Element("location").Value,
+                    LargePoster = poster?.Element("xlarge").Value
                 };
             });
         }

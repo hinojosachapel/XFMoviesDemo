@@ -99,7 +99,7 @@ namespace XFMoviesDemo.ViewModels
                 ConnectionRequired = false;
 
                 var movieList = await _moviesService.GetMovies();
-                Movies = new ObservableCollection<MovieModel>(movieList.OrderByDescending(m => m.RelaseDate).Take(3 * 15));
+                Movies = new ObservableCollection<MovieModel>(movieList.OrderByDescending(m => m.ReleaseDate).Take(3 * 15));
 
                 if (_platformInfo.IsUWPDesktop || _platformInfo.IsWinRT)
                 {

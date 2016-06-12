@@ -65,7 +65,7 @@
 
         <Label
             Style="{DynamicResource ListCaptionAltTextblockStyle}"
-            Text="{Binding Movie.RelaseDate}" />
+            Text="{Binding Movie.ReleaseDate}" />
 
         <BoxView Style="{DynamicResource LineStyle}" />
 
