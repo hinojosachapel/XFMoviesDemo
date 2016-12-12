@@ -7,6 +7,21 @@
              BackgroundColor="#000000"
              Title="{Binding Title}">
 
-  <Image Aspect="AspectFit" Source="{Binding Poster}" />
+    <Image Aspect="AspectFit" Source="{Binding Poster}">
+        <Image.HorizontalOptions>
+            <OnPlatform x:TypeArguments="LayoutOptions">
+                <OnPlatform.iOS>Fill</OnPlatform.iOS>
+                <OnPlatform.Android>Fill</OnPlatform.Android>
+                <OnPlatform.WinPhone>Center</OnPlatform.WinPhone>
+            </OnPlatform>
+        </Image.HorizontalOptions>
+        <Image.VerticalOptions>
+            <OnPlatform x:TypeArguments="LayoutOptions">
+                <OnPlatform.iOS>Fill</OnPlatform.iOS>
+                <OnPlatform.Android>Fill</OnPlatform.Android>
+                <OnPlatform.WinPhone>Center</OnPlatform.WinPhone>
+            </OnPlatform>
+        </Image.VerticalOptions>
+    </Image>
   
 </ContentPage>

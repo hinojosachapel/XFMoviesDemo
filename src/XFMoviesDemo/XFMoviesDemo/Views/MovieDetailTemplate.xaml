@@ -13,7 +13,7 @@
       <RowDefinition Height="Auto" />
       <RowDefinition Height="12" />
       <RowDefinition Height="30" />
-      <RowDefinition Height="500" /> <!-- Just to avoid a extrange behaviour in W10 Mobile -->
+      <RowDefinition Height="600" /> <!-- Just to avoid a extrange behaviour in W10 Mobile -->
     </Grid.RowDefinitions>
        
       <Image x:Name="Poster" Source="{Binding Movie.Poster}" WidthRequest="134" HeightRequest="193" VerticalOptions="Start">

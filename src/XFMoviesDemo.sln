@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XFMoviesDemo.Droid", "XFMoviesDemo\XFMoviesDemo.Droid\XFMoviesDemo.Droid.csproj", "{7A448987-B47E-465F-83F1-B8C82337CC98}"
 EndProject
@@ -263,6 +263,8 @@ Global
 		{EF4FDC30-58EE-447F-A3B0-8E0D14E9F4EA}.Debug|ARM.Deploy.0 = Debug|ARM
 		{EF4FDC30-58EE-447F-A3B0-8E0D14E9F4EA}.Debug|iPhone.ActiveCfg = Debug|x86
 		{EF4FDC30-58EE-447F-A3B0-8E0D14E9F4EA}.Debug|iPhoneSimulator.ActiveCfg = Debug|x86
+		{EF4FDC30-58EE-447F-A3B0-8E0D14E9F4EA}.Debug|iPhoneSimulator.Build.0 = Debug|x86
+		{EF4FDC30-58EE-447F-A3B0-8E0D14E9F4EA}.Debug|iPhoneSimulator.Deploy.0 = Debug|x86
 		{EF4FDC30-58EE-447F-A3B0-8E0D14E9F4EA}.Debug|x64.ActiveCfg = Debug|x64
 		{EF4FDC30-58EE-447F-A3B0-8E0D14E9F4EA}.Debug|x64.Build.0 = Debug|x64
 		{EF4FDC30-58EE-447F-A3B0-8E0D14E9F4EA}.Debug|x64.Deploy.0 = Debug|x64

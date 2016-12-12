@@ -27,5 +27,9 @@ namespace XFMoviesDemo.ViewModels
         public virtual void OnNavigatedTo(NavigationParameters parameters)
         {
         }
+
+        public virtual void OnNavigatingTo(NavigationParameters parameters)
+        {
+        }
     }
 }

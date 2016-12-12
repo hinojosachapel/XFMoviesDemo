@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace XFMoviesDemo.Core.Services
             if (_movies == null)
             {
                 string xml;
+
                 using (var client = new HttpClient())
                 {
                     xml = await client.GetStringAsync("http://www.apple.com/trailers/home/xml/current.xml");
@@ -45,8 +47,8 @@ namespace XFMoviesDemo.Core.Services
                     Runtime = info.Element("runtime").Value,
                     Director = info.Element("director").Value,
                     ReleaseDate = info.Element("releasedate").Value,
-                    Genre = genre != null ? string.Join(", ", genre.Elements().Select(g => g.Value)) : string.Empty,
-                    Cast = cast != null ? string.Join(", ", cast.Elements().Select(g => g.Value)) : string.Empty,
+                    Genre = genre != null ? String.Join(", ", genre.Elements().Select(g => g.Value)) : String.Empty,
+                    Cast = cast != null ? String.Join(", ", cast.Elements().Select(g => g.Value)) : String.Empty,
                     Description = info.Element("description").Value,
                     Poster = poster?.Element("location").Value,
                     LargePoster = poster?.Element("xlarge").Value

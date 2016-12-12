@@ -12,24 +12,11 @@
   <Grid>
     <StackLayout Spacing="0">
 
-      <Grid IsVisible="{x:Static local:App.IsUWPDesktop}">
-
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
+      <Grid IsVisible="{x:Static local:App.IsUWPDesktop}" BackgroundColor="#03A9F4">
         <Grid.RowDefinitions>
-          <RowDefinition Height="48"/>
+            <RowDefinition Height="48"/>
         </Grid.RowDefinitions>
-
-        <BoxView BackgroundColor="#03A9F4" />
-        <Image x:Name="BurgerMenu" Source="burgermenu.png" VerticalOptions="Start" HorizontalOptions="Start">
-          <Image.GestureRecognizers>
-            <TapGestureRecognizer Command="{Binding ImageTapedCommand}" CommandParameter="{x:Reference Name=BurgerMenu}" />
-          </Image.GestureRecognizers>
-        </Image>
-        <Label Text="{Binding Title}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="24" TextColor="#FFFFFF" />
-
+        <Label Text="{Binding Title}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="24" TextColor="#FFFFFF" Margin="12,0,0,0" />
       </Grid>
 
       <ListView x:CachingStrategy="RecycleElement" HasUnevenRows="True"

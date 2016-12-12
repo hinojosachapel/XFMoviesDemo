@@ -19,7 +19,6 @@ namespace XFMoviesDemo.ViewModels
         private readonly IPlatformInfo _platformInfo;
         private readonly INavigationService _navigationService;
         private readonly IEventAggregator _eventAggregator;
-        private bool _isNarrow;
 
         public DelegateCommand<MovieModel> ItemTapedCommand { get; set; }
         public DelegateCommand<Image> ImageTapedCommand { get; set; }
@@ -65,7 +64,6 @@ namespace XFMoviesDemo.ViewModels
             Title = "Movies Demo";
 
             eventAggregator.GetEvent<AppearingEvent>().Subscribe(OnAppearingEventReceived);
-            eventAggregator.GetEvent<NarrowEvent>().Subscribe(OnNarrowEventReceived);
         }
 
         private void OnAppearingEventReceived(string senderView)
@@ -76,19 +74,11 @@ namespace XFMoviesDemo.ViewModels
             }
         }
 
-        private void OnNarrowEventReceived(Tuple<string, bool> sender)
-        {
-            if (sender.Item1 == nameof(MoviesView))
-            {
-                _isNarrow = sender.Item2;
-            }
-        }
-
         private async void ImageTaped(Image image)
         {
             image.Opacity = 0.0;
             await image.FadeTo(1.0, 100);
-            _eventAggregator.GetEvent<PresentEvent>().Publish(false);
+            _eventAggregator.GetEvent<PresentEvent>().Publish();
         }
 
         private async void Start()
@@ -130,7 +120,7 @@ namespace XFMoviesDemo.ViewModels
             if (!(_platformInfo.IsUWPDesktop || _platformInfo.IsWinRT))
             {
                 SelectedMovie = null;
-                _navigationService.Navigate(nameof(MovieDetailView));
+                _navigationService.NavigateAsync(nameof(MovieDetailView));
             }
 
             _eventAggregator.GetEvent<DetailEvent>().Publish(selectedItem);

@@ -2,7 +2,7 @@
 
 namespace XFMoviesDemo.Core.Messages
 {
-    public class PresentEvent : PubSubEvent<bool>
+    public class PresentEvent : PubSubEvent
     {
     }
 }

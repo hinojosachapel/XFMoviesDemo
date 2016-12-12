@@ -16,17 +16,19 @@ namespace XFMoviesDemo
         public static bool IsWinPhone { get; set; }
         public static bool IsWinRT { get; set; }
 
+        public App(IPlatformInitializer initializer = null) : base(initializer) { }
+
         protected override void OnInitialized()
         {
             InitializeComponent();
 
             if (IsUWPDesktop || IsWinRT)
             {
-                NavigationService.Navigate(nameof(RootPage));
+                NavigationService.NavigateAsync(nameof(RootPage));
             }
             else
             {
-                NavigationService.Navigate($"{nameof(MyNavigationPage)}/{nameof(MoviesView)}");
+                NavigationService.NavigateAsync($"{nameof(MyNavigationPage)}/{nameof(MoviesView)}");
             }
         }
 

@@ -40,13 +40,14 @@ namespace XFMoviesDemo.ViewModels
 
         private async void ImageTaped(Image image)
         {
-            image.Opacity = 0.0;
-            await image.FadeTo(1.0, 100);
+            await image.FadeTo(0.4, 100);
+            await System.Threading.Tasks.Task.Delay(100);
+            await image.FadeTo(1.0, 50);
 
             NavigationParameters parameters = new NavigationParameters();
             parameters.Add(Param.Title, Title);
             parameters.Add(Param.Poster, Movie.LargePoster);
-            await _navigationService.Navigate(nameof(PosterView), parameters);
+            await _navigationService.NavigateAsync(nameof(PosterView), parameters);
         }
     }
 }
