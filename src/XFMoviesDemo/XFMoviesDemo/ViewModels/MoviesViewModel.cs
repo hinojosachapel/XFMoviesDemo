@@ -21,7 +21,6 @@ namespace XFMoviesDemo.ViewModels
         private readonly IEventAggregator _eventAggregator;
 
         public DelegateCommand<MovieModel> ItemTapedCommand { get; set; }
-        public DelegateCommand<Image> ImageTapedCommand { get; set; }
 
         private ObservableCollection<MovieModel> _movies;
         public ObservableCollection<MovieModel> Movies
@@ -59,8 +58,6 @@ namespace XFMoviesDemo.ViewModels
             _navigationService = navigationService;
 
             ItemTapedCommand = new DelegateCommand<MovieModel>(ItemTaped);
-            ImageTapedCommand = new DelegateCommand<Image>(ImageTaped);
-
             Title = "Movies Demo";
 
             eventAggregator.GetEvent<AppearingEvent>().Subscribe(OnAppearingEventReceived);
@@ -74,13 +71,6 @@ namespace XFMoviesDemo.ViewModels
             }
         }
 
-        private async void ImageTaped(Image image)
-        {
-            image.Opacity = 0.0;
-            await image.FadeTo(1.0, 100);
-            _eventAggregator.GetEvent<PresentEvent>().Publish();
-        }
-
         private async void Start()
         {
             try
@@ -91,7 +81,7 @@ namespace XFMoviesDemo.ViewModels
                 var movieList = await _moviesService.GetMovies();
                 Movies = new ObservableCollection<MovieModel>(movieList.OrderByDescending(m => m.ReleaseDate).Take(3 * 15));
 
-                if (_platformInfo.IsUWPDesktop || _platformInfo.IsWinRT)
+                if (_platformInfo.IsUWPDesktop)
                 {
                     SelectedMovie = (_currentMovieId != 0) ?
                         Movies.FirstOrDefault(m => m.Id == _currentMovieId) :
@@ -117,7 +107,7 @@ namespace XFMoviesDemo.ViewModels
                 return;
             }
 
-            if (!(_platformInfo.IsUWPDesktop || _platformInfo.IsWinRT))
+            if (!_platformInfo.IsUWPDesktop)
             {
                 SelectedMovie = null;
                 _navigationService.NavigateAsync(nameof(MovieDetailView));

@@ -13,8 +13,6 @@ namespace XFMoviesDemo
     {
         public static bool IsUWPDesktop { get; set; }
         public static bool IsUWPMobile { get; set; }
-        public static bool IsWinPhone { get; set; }
-        public static bool IsWinRT { get; set; }
 
         public App(IPlatformInitializer initializer = null) : base(initializer) { }
 
@@ -22,7 +20,7 @@ namespace XFMoviesDemo
         {
             InitializeComponent();
 
-            if (IsUWPDesktop || IsWinRT)
+            if (IsUWPDesktop)
             {
                 NavigationService.NavigateAsync(nameof(RootPage));
             }
@@ -34,7 +32,7 @@ namespace XFMoviesDemo
 
         protected override void RegisterTypes()
         {
-            var platformInfo = new PlatformInfo(IsUWPDesktop, IsUWPMobile, IsWinPhone, IsWinRT);
+            var platformInfo = new PlatformInfo(IsUWPDesktop, IsUWPMobile);
 
             Container.RegisterInstance<IPlatformInfo>(platformInfo);
             Container.RegisterInstance<IMoviesService>(new MoviesService());

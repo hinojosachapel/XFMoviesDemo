@@ -108,9 +108,6 @@
     <None Include="Windows_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\XFMoviesDemo\Images\burgermenu.png">
-      <Link>burgermenu.png</Link>
-    </Content>
     <Content Include="Assets\Movie.png" />
     <Content Include="Assets\NewStoreLogo.scale-100.png" />
     <Content Include="Assets\NewStoreLogo.scale-125.png" />
