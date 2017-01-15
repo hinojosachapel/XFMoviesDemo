@@ -2,41 +2,23 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XFMoviesDemo.Views.MoviesTemplate">
+    
+    <Grid Padding="12,4" RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-  <Grid Padding="12,4">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-    </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
 
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto" />
-      <ColumnDefinition Width="*" />
-    </Grid.ColumnDefinitions>
-
-    <Image
-        Grid.RowSpan="2"
-        HeightRequest="70"
-        Aspect="AspectFit"
-        Source="{Binding Poster}" />
-
-    <Label
-        Grid.Column="1"
-        Style="{DynamicResource BaseTextBlockStyle}"
-        Text="{Binding Title}" />
-
-    <Label
-        Grid.Row="1"
-        Grid.Column="1"
-        Style="{DynamicResource ListCaptionAltTextblockStyle}"
-        Text="{Binding Director}" />
-
-    <Label
-        Grid.Row="1"
-        Grid.Column="1"
-        HorizontalOptions="End"
-        Style="{DynamicResource ListCaptionAltTextblockStyle}"
-        Text="{Binding Runtime}" />
+        <Image Grid.RowSpan="2" HeightRequest="70" Aspect="AspectFit" Source="{Binding Poster}" />
+        <Label Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ListTitleStyle}" Text="{Binding Title}" />
+        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource ListSubtitletyle}" Text="{Binding Director}" />
+        <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource ListSubtitletyle}" Text="{Binding Runtime}" />
   </Grid>
   
 </ContentView>

@@ -40,9 +40,8 @@ namespace XFMoviesDemo.ViewModels
 
         private async void ImageTaped(Image image)
         {
-            await image.FadeTo(0.4, 100);
-            await System.Threading.Tasks.Task.Delay(100);
-            await image.FadeTo(1.0, 50);
+            await image.FadeTo(0.4, 50);
+            await image.FadeTo(1.0, 300);
 
             NavigationParameters parameters = new NavigationParameters();
             parameters.Add(Param.Title, Title);

@@ -5,7 +5,7 @@ using XFMoviesDemo.Constants;
 
 namespace XFMoviesDemo.ViewModels
 {
-    public class PosterViewModel : BaseViewModel, INavigationAware
+    public class PosterViewModel : BaseViewModel
     {
         private string _poster = String.Empty;
         public string Poster

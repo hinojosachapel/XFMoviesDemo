@@ -2,6 +2,8 @@
 using Android.Content.PM;
 using Android.Views;
 using Android.OS;
+using Prism.Unity;
+using Microsoft.Practices.Unity;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
@@ -25,8 +27,15 @@ namespace XFMoviesDemo.Droid
             base.OnCreate(bundle);
 
             Forms.Init(this, bundle);
-            LoadApplication(new App());
+            LoadApplication(new App(new AndroidInitializer()));
+        }
+    }
+
+    public class AndroidInitializer : IPlatformInitializer
+    {
+        public void RegisterTypes(IUnityContainer container)
+        {
+
         }
     }
 }
-

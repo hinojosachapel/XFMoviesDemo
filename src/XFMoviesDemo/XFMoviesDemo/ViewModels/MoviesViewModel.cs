@@ -71,6 +71,19 @@ namespace XFMoviesDemo.ViewModels
             }
         }
 
+        // Note that this method is not executed on UWP Desktop because on that scenario,
+        // MoviesView is not navigated to, it is the Master page of a MasterDetailPage,
+        // so we use the EventAggregator as a general solution.
+        // I have left this commented code here only for educational purposes.
+        // You can uncomment it and try it on a phone.
+        //public override void OnNavigatedTo(NavigationParameters parameters)
+        //{
+        //    if (Movies == null)
+        //    {
+        //        Start();
+        //    }
+        //}
+
         private async void Start()
         {
             try

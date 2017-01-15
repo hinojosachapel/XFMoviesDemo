@@ -16,6 +16,11 @@ namespace XFMoviesDemo.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
+            // If the root page is a MasterDetailPage (UWP Desktop scenario), and MoviesView is its Master page,
+            // we can't use MoviesViewModel.OnNavigatedTo() because MoviesView is not navigated to, so we use
+            // the EventAggregator as a general solution. Note that MoviesViewModel.OnNavigatedTo() would be
+            // executed on a phone because in that scenario, MoviesView it is navigated to.
             _eventAggregator.GetEvent<AppearingEvent>().Publish(nameof(MoviesView));
         }
     }

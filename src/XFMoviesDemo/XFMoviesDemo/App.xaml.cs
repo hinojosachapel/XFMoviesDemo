@@ -1,5 +1,6 @@
 ﻿using Microsoft.Practices.Unity;
 using Prism.Unity;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using XFMoviesDemo.Core.Services;
@@ -20,14 +21,22 @@ namespace XFMoviesDemo
         {
             InitializeComponent();
 
+            string name;
+
             if (IsUWPDesktop)
             {
-                NavigationService.NavigateAsync(nameof(RootPage));
+                Resources["ListTitleFontSize"] = 20;
+                Resources["ListSubtitleFontSize"] = 16;
+                Resources["DetailFontSize"] = 18;
+
+                name = $"{nameof(MyMasterDetail)}/{nameof(MyNavigationPage)}/{nameof(MovieDetailView)}";
             }
             else
             {
-                NavigationService.NavigateAsync($"{nameof(MyNavigationPage)}/{nameof(MoviesView)}");
+                name = $"{nameof(MyNavigationPage)}/{nameof(MoviesView)}";
             }
+
+            NavigationService.NavigateAsync(name, animated: false);
         }
 
         protected override void RegisterTypes()
@@ -38,9 +47,9 @@ namespace XFMoviesDemo
             Container.RegisterInstance<IMoviesService>(new MoviesService());
             
             Container.RegisterTypeForNavigation<MyNavigationPage>();
+            Container.RegisterTypeForNavigation<MyMasterDetail>();
             Container.RegisterTypeForNavigation<MoviesView>();
             Container.RegisterTypeForNavigation<MovieDetailView>();
-            Container.RegisterTypeForNavigation<RootPage>();
             Container.RegisterTypeForNavigation<PosterView>();
         }
 

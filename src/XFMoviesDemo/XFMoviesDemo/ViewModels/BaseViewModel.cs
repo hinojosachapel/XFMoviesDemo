@@ -30,6 +30,8 @@ namespace XFMoviesDemo.ViewModels
 
         public virtual void OnNavigatingTo(NavigationParameters parameters)
         {
+            // This will be available on Prism 6.3
+            // http://brianlagunas.com/prism-for-xamarin-forms-6-3-preview-with-improved-template-pack/
         }
     }
 }
