@@ -8,11 +8,7 @@ namespace XFMoviesDemo.UWP
     {
         public MainPage()
         {
-            this.InitializeComponent();
-
-            XFMoviesDemo.App.IsUWPDesktop = AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Desktop";
-            XFMoviesDemo.App.IsUWPMobile = AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Mobile";
-
+            InitializeComponent();
             LoadApplication(new XFMoviesDemo.App(new UwpInitializer()));
         }
     }

@@ -16,7 +16,6 @@ namespace XFMoviesDemo.ViewModels
     public class MoviesViewModel : BaseViewModel
     {
         private readonly IMoviesService _moviesService;
-        private readonly IPlatformInfo _platformInfo;
         private readonly INavigationService _navigationService;
         private readonly IEventAggregator _eventAggregator;
 
@@ -50,11 +49,10 @@ namespace XFMoviesDemo.ViewModels
             set { SetProperty(ref _connectionRequired, value); }
         }
         
-        public MoviesViewModel(IEventAggregator eventAggregator, IMoviesService moviesService, IPlatformInfo platformInfo, INavigationService navigationService)
+        public MoviesViewModel(IEventAggregator eventAggregator, IMoviesService moviesService, INavigationService navigationService)
         {
             _eventAggregator = eventAggregator;
             _moviesService = moviesService;
-            _platformInfo = platformInfo;
             _navigationService = navigationService;
 
             ItemTapedCommand = new DelegateCommand<MovieModel>(ItemTaped);
@@ -94,7 +92,7 @@ namespace XFMoviesDemo.ViewModels
                 var movieList = await _moviesService.GetMovies();
                 Movies = new ObservableCollection<MovieModel>(movieList.OrderByDescending(m => m.ReleaseDate).Take(3 * 15));
 
-                if (_platformInfo.IsUWPDesktop)
+                if (Device.Idiom == TargetIdiom.Desktop)
                 {
                     SelectedMovie = (_currentMovieId != 0) ?
                         Movies.FirstOrDefault(m => m.Id == _currentMovieId) :
@@ -120,7 +118,7 @@ namespace XFMoviesDemo.ViewModels
                 return;
             }
 
-            if (!_platformInfo.IsUWPDesktop)
+            if (Device.Idiom != TargetIdiom.Desktop)
             {
                 SelectedMovie = null;
                 _navigationService.NavigateAsync(nameof(MovieDetailView));

@@ -12,8 +12,10 @@ namespace XFMoviesDemo
 {
     public partial class App : PrismApplication
     {
-        public static bool IsUWPDesktop { get; set; }
-        public static bool IsUWPMobile { get; set; }
+        public static bool IsUWPDesktop
+        {
+            get { return Device.Idiom == TargetIdiom.Desktop; }
+        }
 
         public App(IPlatformInitializer initializer = null) : base(initializer) { }
 
@@ -41,9 +43,6 @@ namespace XFMoviesDemo
 
         protected override void RegisterTypes()
         {
-            var platformInfo = new PlatformInfo(IsUWPDesktop, IsUWPMobile);
-
-            Container.RegisterInstance<IPlatformInfo>(platformInfo);
             Container.RegisterInstance<IMoviesService>(new MoviesService());
             
             Container.RegisterTypeForNavigation<MyNavigationPage>();

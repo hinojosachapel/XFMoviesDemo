@@ -1,10 +1,7 @@
-﻿using Prism.Commands;
-using Prism.Events;
-using Prism.Mvvm;
+﻿using Prism.Events;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Xamarin.Forms;
+
 using XFMoviesDemo.Core.Messages;
 using XFMoviesDemo.Core.Models;
 using XFMoviesDemo.Views;
@@ -17,12 +14,12 @@ namespace XFMoviesDemo.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly INavigationService _navigationService;
 
-        public MyMasterDetailViewModel(INavigationService navigationService, IEventAggregator eventAggregator, IPlatformInfo platformInfo)
+        public MyMasterDetailViewModel(INavigationService navigationService, IEventAggregator eventAggregator)
         {
             _navigationService = navigationService;
             _eventAggregator = eventAggregator;
 
-            if (platformInfo.IsUWPDesktop)
+            if (Device.Idiom == TargetIdiom.Desktop)
             {
                 eventAggregator.GetEvent<DetailEvent>().Subscribe(OnDetailEventReceived);
             }
