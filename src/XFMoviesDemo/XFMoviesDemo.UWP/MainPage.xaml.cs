@@ -1,23 +1,18 @@
-﻿using Windows.System.Profile;
-using Prism.Unity;
-using Microsoft.Practices.Unity;
+﻿using Prism;
+using Prism.Ioc;
 
 namespace XFMoviesDemo.UWP
 {
-    public sealed partial class MainPage
+    public sealed partial class MainPage : IPlatformInitializer
     {
+        public void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+        }
+
         public MainPage()
         {
             InitializeComponent();
-            LoadApplication(new XFMoviesDemo.App(new UwpInitializer()));
-        }
-    }
-
-    public class UwpInitializer : IPlatformInitializer
-    {
-        public void RegisterTypes(IUnityContainer container)
-        {
-
+            LoadApplication(new XFMoviesDemo.App(this));
         }
     }
 }

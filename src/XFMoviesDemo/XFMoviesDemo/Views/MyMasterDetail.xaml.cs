@@ -1,21 +1,32 @@
-﻿using Prism.Events;
-using Prism.Navigation;
-using Microsoft.Practices.Unity;
+﻿using Prism.Navigation;
 using Xamarin.Forms;
 
 namespace XFMoviesDemo.Views
 {
     public partial class MyMasterDetail : MasterDetailPage, IMasterDetailPageOptions
     {
-        public MyMasterDetail(IUnityContainer container)
+        // Allows to load movies content on iPad
+        private bool _navigated = false;
+
+        public MyMasterDetail(MoviesView masterView)
         {
             InitializeComponent();
-            Master = container.Resolve<MoviesView>();
+            Master = masterView;
         }
 
         public bool IsPresentedAfterNavigation
         {
-            get { return Device.Idiom != TargetIdiom.Phone; }
+            get
+            {
+                bool result = !_navigated;
+
+                if (!_navigated)
+                {
+                    _navigated = true;
+                }
+
+                return result;
+            }
         }
     }
 }

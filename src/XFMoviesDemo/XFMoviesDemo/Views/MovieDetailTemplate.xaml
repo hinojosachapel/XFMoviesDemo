@@ -3,53 +3,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XFMoviesDemo.Views.MovieDetailTemplate">
 
-    <Grid Margin="12">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+    <StackLayout Spacing="4" Margin="8">
+        <Label Style="{StaticResource DetailTitleStyle}" Text="{Binding Movie.Title}" />
+        <BoxView Style="{StaticResource LineStyle}" />
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="12" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="600" /> <!-- Just to avoid a extrange behaviour in W10 Mobile -->
-        </Grid.RowDefinitions>
+        <StackLayout Orientation="Horizontal">
+            <Image x:Name="Poster" Source="{Binding Movie.Poster}" WidthRequest="140" HeightRequest="200"
+               VerticalOptions="Start" HorizontalOptions="Start">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ImageTapedCommand}" CommandParameter="{x:Reference Name=Poster}" />
+                </Image.GestureRecognizers>
+            </Image>
+            
+            <StackLayout Spacing="0">
+                <Label Style="{StaticResource DetailTitleStyle}" Text="Genre:" />
+                <Label Style="{StaticResource DetailDescriptionStyle}" Text="{Binding Movie.Genre}" />
 
-        <Image x:Name="Poster" Source="{Binding Movie.Poster}" WidthRequest="140" HeightRequest="200"
-               VerticalOptions="Start" HorizontalOptions="StartAndExpand">
-            <Image.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding ImageTapedCommand}" CommandParameter="{x:Reference Name=Poster}" />
-            </Image.GestureRecognizers>
-        </Image>
+                <BoxView Style="{StaticResource LineStyle}" />
+                <Label Style="{StaticResource DetailTitleStyle}" Text="Director:" />
+                <Label Style="{StaticResource DetailDescriptionStyle}" Text="{Binding Movie.Director}" />
 
-        <StackLayout Spacing="0" Grid.Column="1" Margin="4,0,4,0">
-            <BoxView Style="{StaticResource LineStyle}" VerticalOptions="Start" />
-            <Label Style="{StaticResource DetailTitleStyle}" Text="Genre:" />
-            <Label Style="{StaticResource DetailDescriptionStyle}" Text="{Binding Movie.Genre}" />
+                <BoxView Style="{StaticResource LineStyle}" />
+                <Label Style="{StaticResource DetailTitleStyle}" Text="Cast:" />
+                <Label Style="{StaticResource DetailDescriptionStyle}" Text="{Binding Movie.Cast}" />
 
-            <BoxView Style="{StaticResource LineStyle}" />
-            <Label Style="{StaticResource DetailTitleStyle}" Text="Director:" />
-            <Label Style="{StaticResource DetailDescriptionStyle}" Text="{Binding Movie.Director}" />
+                <BoxView Style="{StaticResource LineStyle}" />
+                <Label Style="{StaticResource DetailTitleStyle}" Text="Release Date:" />
+                <Label Style="{StaticResource DetailDescriptionStyle}" Text="{Binding Movie.ReleaseDate}" />
 
-            <BoxView Style="{StaticResource LineStyle}" />
-            <Label Style="{StaticResource DetailTitleStyle}" Text="Cast:" />
-            <Label Style="{StaticResource DetailDescriptionStyle}" Text="{Binding Movie.Cast}" />
+                <BoxView Style="{StaticResource LineStyle}" />
+                <Label Style="{StaticResource DetailTitleStyle}" Text="Run Time:" />
+                <Label Style="{StaticResource DetailDescriptionStyle}" Text="{Binding Movie.Runtime}" />
 
-            <BoxView Style="{StaticResource LineStyle}" />
-            <Label Style="{StaticResource DetailTitleStyle}" Text="Release Date:" />
-            <Label Style="{StaticResource DetailDescriptionStyle}" Text="{Binding Movie.ReleaseDate}" />
-
-            <BoxView Style="{StaticResource LineStyle}" />
-            <Label Style="{StaticResource DetailTitleStyle}" Text="Run Time:" />
-            <Label Style="{StaticResource DetailDescriptionStyle}" Text="{Binding Movie.Runtime}" />
+            </StackLayout>
 
         </StackLayout>
-
-        <BoxView Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource LineStyle}" />
-        <Label Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource DetailTitleStyle}" Text="Synopsis:" />
-        <Label Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource DetailDescriptionStyle}" Text="{Binding Movie.Description}" />
         
-    </Grid>
+        <BoxView Style="{StaticResource LineStyle}" />
+        <Label Style="{StaticResource DetailTitleStyle}" Text="Synopsis:" />
+        <Label Style="{StaticResource DetailDescriptionStyle}" Text="{Binding Movie.Description}" />
+        
+    </StackLayout>
 
 </ContentView>

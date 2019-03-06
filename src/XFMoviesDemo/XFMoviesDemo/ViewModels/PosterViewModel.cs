@@ -18,10 +18,10 @@ namespace XFMoviesDemo.ViewModels
         {
         }
 
-        public override void OnNavigatedTo(NavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
-            Title = (string)parameters[Param.Title];
-            Poster = (string)parameters[Param.Poster];
+            Title = (string)parameters[Params.Title];
+            Poster = (string)parameters[Params.Poster];
         }
     }
 }

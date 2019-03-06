@@ -6,7 +6,6 @@ using Xamarin.Forms;
 using XFMoviesDemo.Constants;
 using XFMoviesDemo.Core.Messages;
 using XFMoviesDemo.Core.Models;
-using XFMoviesDemo.Views;
 
 namespace XFMoviesDemo.ViewModels
 {
@@ -44,9 +43,9 @@ namespace XFMoviesDemo.ViewModels
             await image.FadeTo(1.0, 300);
 
             NavigationParameters parameters = new NavigationParameters();
-            parameters.Add(Param.Title, Title);
-            parameters.Add(Param.Poster, Movie.LargePoster);
-            await _navigationService.NavigateAsync(nameof(PosterView), parameters);
+            parameters.Add(Params.Title, Title);
+            parameters.Add(Params.Poster, Movie.LargePoster);
+            await _navigationService.NavigateAsync(NavigationKeys.PosterView, parameters);
         }
     }
 }

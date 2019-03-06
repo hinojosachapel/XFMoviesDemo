@@ -2,8 +2,8 @@
 using Android.Content.PM;
 using Android.Views;
 using Android.OS;
-using Prism.Unity;
-using Microsoft.Practices.Unity;
+using Prism;
+using Prism.Ioc;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
@@ -17,8 +17,12 @@ namespace XFMoviesDemo.Droid
         Icon = "@drawable/icon",
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
         WindowSoftInputMode = SoftInput.AdjustPan)]
-    public class MainActivity : FormsAppCompatActivity
+    public class MainActivity : FormsAppCompatActivity, IPlatformInitializer
     {
+        public void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+        }
+
         protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.tabs;
@@ -27,15 +31,7 @@ namespace XFMoviesDemo.Droid
             base.OnCreate(bundle);
 
             Forms.Init(this, bundle);
-            LoadApplication(new App(new AndroidInitializer()));
-        }
-    }
-
-    public class AndroidInitializer : IPlatformInitializer
-    {
-        public void RegisterTypes(IUnityContainer container)
-        {
-
+            LoadApplication(new App(this));
         }
     }
 }

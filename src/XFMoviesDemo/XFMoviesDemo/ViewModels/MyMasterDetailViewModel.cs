@@ -2,9 +2,9 @@
 using Prism.Navigation;
 using Xamarin.Forms;
 
+using XFMoviesDemo.Constants;
 using XFMoviesDemo.Core.Messages;
 using XFMoviesDemo.Core.Models;
-using XFMoviesDemo.Views;
 
 namespace XFMoviesDemo.ViewModels
 {
@@ -19,7 +19,7 @@ namespace XFMoviesDemo.ViewModels
             _navigationService = navigationService;
             _eventAggregator = eventAggregator;
 
-            if (Device.Idiom == TargetIdiom.Desktop)
+            if (Device.Idiom == TargetIdiom.Desktop || Device.Idiom == TargetIdiom.Tablet)
             {
                 eventAggregator.GetEvent<DetailEvent>().Subscribe(OnDetailEventReceived);
             }
@@ -36,7 +36,7 @@ namespace XFMoviesDemo.ViewModels
             }
 
             _currentMovieId = selectedItem.Id;
-            _navigationService.NavigateAsync($"{nameof(MyNavigationPage)}/{nameof(MovieDetailView)}");
+            _navigationService.NavigateAsync($"{NavigationKeys.MyNavigationPage}/{NavigationKeys.MovieDetailView}");
             _eventAggregator.GetEvent<DetailEvent>().Publish(selectedItem);
         }
     }

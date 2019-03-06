@@ -20,7 +20,7 @@ namespace XFMoviesDemo.Core.Services
 
                 using (var client = new HttpClient())
                 {
-                    xml = await client.GetStringAsync("http://www.apple.com/trailers/home/xml/current.xml");
+                    xml = await client.GetStringAsync("https://trailers.apple.com/trailers/home/xml/current.xml");
                 }
 
                 _movies = ProcessMoviesXml(xml);

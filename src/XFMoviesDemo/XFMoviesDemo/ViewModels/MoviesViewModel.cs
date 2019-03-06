@@ -6,10 +6,10 @@ using Prism.Events;
 using Prism.Commands;
 using Prism.Navigation;
 
+using XFMoviesDemo.Constants;
 using XFMoviesDemo.Core.Messages;
 using XFMoviesDemo.Core.Models;
 using XFMoviesDemo.Core.Services;
-using XFMoviesDemo.Views;
 
 namespace XFMoviesDemo.ViewModels
 {
@@ -63,18 +63,18 @@ namespace XFMoviesDemo.ViewModels
 
         private void OnAppearingEventReceived(string senderView)
         {
-            if (senderView == nameof(MoviesView) && (Movies == null))
+            if (senderView == NavigationKeys.MoviesView && (Movies == null))
             {
                 Start();
             }
         }
 
-        // Note that this method is not executed on UWP Desktop because on that scenario,
+        // Note that this method is not executed on UWP Desktop nor on Tablet because on that scenario,
         // MoviesView is not navigated to, it is the Master page of a MasterDetailPage,
-        // so we use the EventAggregator as a general solution.
+        // so we use the EventAggregator as a general solution for all kind of devices.
         // I have left this commented code here only for educational purposes.
         // You can uncomment it and try it on a phone.
-        //public override void OnNavigatedTo(NavigationParameters parameters)
+        //public override void OnNavigatedTo(INavigationParameters parameters)
         //{
         //    if (Movies == null)
         //    {
@@ -92,7 +92,7 @@ namespace XFMoviesDemo.ViewModels
                 var movieList = await _moviesService.GetMovies();
                 Movies = new ObservableCollection<MovieModel>(movieList.OrderByDescending(m => m.ReleaseDate).Take(3 * 15));
 
-                if (Device.Idiom == TargetIdiom.Desktop)
+                if (Device.Idiom == TargetIdiom.Desktop || Device.Idiom == TargetIdiom.Tablet)
                 {
                     SelectedMovie = (_currentMovieId != 0) ?
                         Movies.FirstOrDefault(m => m.Id == _currentMovieId) :
@@ -118,10 +118,10 @@ namespace XFMoviesDemo.ViewModels
                 return;
             }
 
-            if (Device.Idiom != TargetIdiom.Desktop)
+            if (Device.Idiom != TargetIdiom.Desktop && Device.Idiom != TargetIdiom.Tablet)
             {
                 SelectedMovie = null;
-                _navigationService.NavigateAsync(nameof(MovieDetailView));
+                _navigationService.NavigateAsync(NavigationKeys.MovieDetailView);
             }
 
             _eventAggregator.GetEvent<DetailEvent>().Publish(selectedItem);

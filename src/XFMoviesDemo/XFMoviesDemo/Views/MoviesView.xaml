@@ -12,7 +12,7 @@
   <Grid>
     <StackLayout Spacing="0">
 
-      <Grid IsVisible="{x:Static local:App.IsUWPDesktop}" BackgroundColor="#03A9F4">
+            <Grid IsVisible="{x:Static local:App.IsDesktopOrTablet}" BackgroundColor="#03A9F4">
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
         </Grid.RowDefinitions>

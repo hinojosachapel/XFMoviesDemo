@@ -1,8 +1,9 @@
-﻿using Microsoft.Practices.Unity;
-using Prism.Unity;
+﻿using Prism;
+using Prism.Ioc;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using XFMoviesDemo.Constants;
 using XFMoviesDemo.Core.Services;
 using XFMoviesDemo.Views;
 
@@ -10,14 +11,24 @@ using XFMoviesDemo.Views;
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XFMoviesDemo
 {
-    public partial class App : PrismApplication
+    public partial class App
     {
-        public static bool IsUWPDesktop
+        public static bool IsDesktopOrTablet
         {
-            get { return Device.Idiom == TargetIdiom.Desktop; }
+            get { return Device.Idiom == TargetIdiom.Desktop || Device.Idiom == TargetIdiom.Tablet; }
         }
 
-        public App(IPlatformInitializer initializer = null) : base(initializer) { }
+        public App(IPlatformInitializer initializer)
+            : this(initializer, true)
+        {
+
+        }
+
+        public App(IPlatformInitializer initializer, bool setFormsDependencyResolver)
+            : base(initializer, setFormsDependencyResolver)
+        {
+
+        }
 
         protected override void OnInitialized()
         {
@@ -25,31 +36,31 @@ namespace XFMoviesDemo
 
             string name;
 
-            if (IsUWPDesktop)
+            if (IsDesktopOrTablet)
             {
                 Resources["ListTitleFontSize"] = 20;
                 Resources["ListSubtitleFontSize"] = 16;
                 Resources["DetailFontSize"] = 18;
 
-                name = $"{nameof(MyMasterDetail)}/{nameof(MyNavigationPage)}/{nameof(MovieDetailView)}";
+                name = $"{NavigationKeys.MyMasterDetail}/{NavigationKeys.MyNavigationPage}/{NavigationKeys.MovieDetailView}";
             }
             else
             {
-                name = $"{nameof(MyNavigationPage)}/{nameof(MoviesView)}";
+                name = $"{NavigationKeys.MyNavigationPage}/{NavigationKeys.MoviesView}";
             }
 
-            NavigationService.NavigateAsync(name, animated: false);
+            NavigationService.NavigateAsync(name);
         }
 
-        protected override void RegisterTypes()
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Container.RegisterInstance<IMoviesService>(new MoviesService());
-            
-            Container.RegisterTypeForNavigation<MyNavigationPage>();
-            Container.RegisterTypeForNavigation<MyMasterDetail>();
-            Container.RegisterTypeForNavigation<MoviesView>();
-            Container.RegisterTypeForNavigation<MovieDetailView>();
-            Container.RegisterTypeForNavigation<PosterView>();
+            containerRegistry.RegisterInstance<IMoviesService>(new MoviesService());
+
+            containerRegistry.RegisterForNavigation<MyNavigationPage>();
+            containerRegistry.RegisterForNavigation<MyMasterDetail>();
+            containerRegistry.RegisterForNavigation<MoviesView>();
+            containerRegistry.RegisterForNavigation<MovieDetailView>();
+            containerRegistry.RegisterForNavigation<PosterView>();
         }
 
         protected override void OnStart()
@@ -59,11 +70,17 @@ namespace XFMoviesDemo
 
         protected override void OnSleep()
         {
+            // Support IApplicationLifecycleAware
+            base.OnSleep();
+
             // Handle when your app sleeps
         }
 
         protected override void OnResume()
         {
+            // Support IApplicationLifecycleAware
+            base.OnResume();
+
             // Handle when your app resumes
         }
     }
