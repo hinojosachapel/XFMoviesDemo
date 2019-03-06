@@ -1,6 +1,6 @@
 # XFMoviesDemo
 
-XFMoviesDemo is an exercise resolution for a cross-platform app with Xamarin Forms and Prism. It is a platform porting from the project [MoviesDemo] (https://github.com/Alfraso/DEMO-DisenoResponsivoEnUWP), written for Universal Windows Platform.
+XFMoviesDemo is an exercise resolution for a cross-platform app with Xamarin Forms and Prism. It is a platform porting from the project [MoviesDemo](https://github.com/Alfraso/DEMO-DisenoResponsivoEnUWP), written for Universal Windows Platform.
 
 ![](https://github.com/hinojosachapel/XFMoviesDemo/blob/master/src/Screenshots/devices.png)
 
