@@ -9,40 +9,50 @@
              BackgroundColor="#F5F5F5"
              Title="{Binding Title}">
 
-  <Grid>
-    <StackLayout Spacing="0">
+    <Grid>
+        <StackLayout Spacing="0">
 
             <Grid IsVisible="{x:Static local:App.IsDesktopOrTablet}" BackgroundColor="#03A9F4">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="48"/>
-        </Grid.RowDefinitions>
-        <Label Text="{Binding Title}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="24" TextColor="#FFFFFF" Margin="12,0,0,0" />
-      </Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition>
+                        <RowDefinition.Height>
+                            <OnPlatform x:TypeArguments="GridLength">
+                                <OnPlatform.Platforms>
+                                    <On Platform="iOS" Value="70" />
+                                    <On Platform="Android" Value="64" />
+                                    <On Platform="UWP" Value="48" />
+                                </OnPlatform.Platforms>
+                            </OnPlatform>
+                        </RowDefinition.Height>
+                    </RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Text="{Binding Title}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="24" TextColor="#FFFFFF" Margin="12,0,0,0" />
+            </Grid>
 
-      <ListView x:CachingStrategy="RecycleElement" HasUnevenRows="True"
+            <ListView x:CachingStrategy="RecycleElement" HasUnevenRows="True"
                 SeparatorColor="Transparent" BackgroundColor="#F5F5F5"
                 ItemsSource="{Binding Movies}"
                 SelectedItem="{Binding SelectedMovie, Mode=TwoWay}"
                 local:ItemTapped.Command="{Binding ItemTapedCommand}">
 
-        <ListView.ItemTemplate>
-          <DataTemplate>
-            <ViewCell>
-              <views:MoviesTemplate />
-            </ViewCell>
-          </DataTemplate>
-        </ListView.ItemTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <views:MoviesTemplate />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
 
-      </ListView>
+            </ListView>
 
-    </StackLayout>
+        </StackLayout>
 
-    <Grid IsVisible="{Binding IsBusy}" BackgroundColor="#80000000" Padding="12" VerticalOptions="Fill">
-      <StackLayout VerticalOptions="Center">
-        <ActivityIndicator IsRunning="{Binding IsBusy}" Color="White" />
-        <Label Text="Loading movies..." HorizontalOptions="Center" TextColor="White" FontSize="18"/>
-      </StackLayout>      
+        <Grid IsVisible="{Binding IsBusy}" BackgroundColor="#80000000" Padding="12" VerticalOptions="Fill">
+            <StackLayout VerticalOptions="Center">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" Color="White" />
+                <Label Text="Loading movies..." HorizontalOptions="Center" TextColor="White" FontSize="18"/>
+            </StackLayout>
+        </Grid>
+
     </Grid>
-    
-  </Grid>
 </ContentPage>
